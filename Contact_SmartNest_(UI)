@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartNest | Contact Us</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #111827;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      background-color: white;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: 600;
+      color: #2563eb;
+    }
+
+    .logo img {
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111827;
+      margin: 0 15px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    .auth-buttons button {
+      margin-left: 10px;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .login-btn {
+      background-color: transparent;
+      border: 1px solid #111827;
+      color: #111827;
+    }
+
+    .signup-btn {
+      background-color: #111827;
+      color: white;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    .contact-section h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .contact-section p {
+      color: #6b7280;
+      margin-bottom: 50px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: left;
+    }
+
+    .contact-card h4 {
+      margin-top: 10px;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .contact-card p {
+      color: #4b5563;
+      font-size: 15px;
+    }
+
+    .contact-card a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    /* Form */
+    form {
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: left;
+    }
+
+    form label {
+      display: block;
+      font-weight: 500;
+      margin: 10px 0 5px;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    form button {
+      background-color: #111827;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 60px 60px;
+      background-color: #fff;
+    }
+
+    .faq-section h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .faq-list {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .faq-item h4 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .faq-item p {
+      color: #4b5563;
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    /* Live Chat */
+    .chat-card {
+      background-color: #1d4ed8;
+      color: white;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 400px;
+      margin: 40px auto 0;
+      text-align: left;
+    }
+
+    .chat-card button {
+      margin-top: 15px;
+      background-color: white;
+      color: #111827;
+      font-weight: 600;
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f172a;
+      color: white;
+      padding: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .footer-section a {
+      color: #9ca3af;
+      display: block;
+      text-decoration: none;
+      margin: 6px 0;
+      font-size: 15px;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      width: 100%;
+      border-top: 1px solid #1e293b;
+      margin-top: 40px;
+      padding-top: 20px;
+      color: #9ca3af;
+    }
+
+    @media(max-width:768px){
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" alt="logo">
+      SmartNest
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="#">Recommendations</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Sell Property</a>
+    </nav>
+    <div class="auth-buttons">
+      <button class="login-btn">Login</button>
+      <button class="signup-btn">Sign Up</button>
+    </div>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <h1>Get in Touch</h1>
+    <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-card">
+          <h4>📞 Phone</h4>
+          <p>Mon–Fri from 8am to 5pm</p>
+          <a href="#">1234567890</a>
+        </div>
+        <div class="contact-card">
+          <h4>📧 Email</h4>
+          <p>Our team is here to help</p>
+          <a href="#">info@smartnest.com</a>
+        </div>
+        <div class="contact-card">
+          <h4>📍 Office</h4>
+          <p>580 Essex Street<br>Sydney</p>
+        </div>
+      </div>
+
+      <form>
+        <label>Full Name *</label>
+        <input type="text" placeholder="John Doe">
+        <label>Email Address *</label>
+        <input type="email" placeholder="john@example.com">
+        <label>Phone Number</label>
+        <input type="text" placeholder="+1 (555) 123-4567">
+        <label>Subject *</label>
+        <select>
+          <option>General Inquiry</option>
+          <option>Property Viewing</option>
+          <option>Sell Property</option>
+        </select>
+        <label>Message *</label>
+        <textarea rows="4" placeholder="Tell us how we can help you..."></textarea>
+        <button type="submit">✈ Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h4>How quickly will I get a response?</h4>
+        <p>We typically respond to all inquiries within 24 hours during business days.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I schedule a property viewing?</h4>
+        <p>Yes! Contact us with the property details and we'll arrange a viewing at your convenience.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do you offer virtual tours?</h4>
+        <p>Absolutely! We provide virtual tours for most of our properties. Just let us know which one you're interested in.</p>
+      </div>
+    </div>
+
+    <div class="chat-card">
+      <h4>💬 Live Chat</h4>
+      <p>Get instant answers from our AI assistant</p>
+      <button>Start Chat</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-section">
+      <div class="logo" style="color:white;">
+        <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" alt="logo">
+        SmartNest
+      </div>
+      <p>Your trusted partner in finding the perfect home. We make real estate smart and simple.</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="search.html">Property Search</a>
+      <a href="#">Recommendations</a>
+      <a href="#">Sell Property</a>
+    </div>
+
+    <div class="footer-section">
+      <h4>Services</h4>
+      <a href="#">Buy Property</a>
+      <a href="#">Rent Property</a>
+      <a href="#">Property Valuation</a>
+      <a href="#">AI Assistant</a>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact Info</h4>
+      <p>📍 580 Essex Street, Sydney</p>
+      <p>📞 1234567890</p>
+      <p>✉ info@smartnest.com</p>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 SmartNest. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
