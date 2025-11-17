@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartNest | AI-Powered Recommendations</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #fff;
+      color: #111827;
+    }
+
+    /* Navbar */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 60px;
+      background-color: white;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      font-weight: 600;
+      color: #2563eb;
+    }
+
+    .logo img {
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #111827;
+      margin: 0 15px;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    .auth-buttons button {
+      margin-left: 10px;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .login-btn {
+      background-color: transparent;
+      border: 1px solid #111827;
+      color: #111827;
+    }
+
+    .signup-btn {
+      background-color: #111827;
+      color: white;
+    }
+
+    /* Main */
+    .recommend-section {
+      padding: 70px 60px;
+    }
+
+    .recommend-section h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .recommend-section p {
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
+
+    .preferences-box {
+      background-color: #eef3ff;
+      border-radius: 12px;
+      padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 50px;
+    }
+
+    .preference-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .preference-tags span {
+      background-color: #fff;
+      padding: 8px 15px;
+      border-radius: 20px;
+      border: 1px solid #d1d5db;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .preferences-box button {
+      background-color: white;
+      border: 1px solid #2563eb;
+      color: #2563eb;
+      font-weight: 600;
+      border-radius: 8px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    /* Properties */
+    .property-grid {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .property-card {
+      width: 380px;
+      border: 1px solid #e5e7eb;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      background-color: white;
+    }
+
+    .property-card img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    .match-badge {
+      position: absolute;
+      margin: 10px;
+      background-color: #16a34a;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .property-info {
+      padding: 20px;
+    }
+
+    .property-info h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .property-info p {
+      color: #6b7280;
+      font-size: 15px;
+      margin: 5px 0;
+    }
+
+    .property-info .highlight {
+      background-color: #eef3ff;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin: 10px 0;
+    }
+
+    .property-details {
+      display: flex;
+      justify-content: space-between;
+      color: #4b5563;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .price {
+      color: #2563eb;
+      font-size: 20px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .view-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background-color: #0f172a;
+      color: white;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #0f172a;
+      color: white;
+      padding: 60px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .footer-section a {
+      color: #9ca3af;
+      display: block;
+      text-decoration: none;
+      margin: 6px 0;
+      font-size: 15px;
+    }
+
+    .footer-section a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      width: 100%;
+      border-top: 1px solid #1e293b;
+      margin-top: 40px;
+      padding-top: 20px;
+      color: #9ca3af;
+    }
+
+    @media(max-width:768px){
+      header {
+        flex-direction: column;
+      }
+      .property-grid {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" alt="logo">
+      SmartNest
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="search.html">Search</a>
+      <a href="recommendations.html">Recommendations</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Sell Property</a>
+    </nav>
+    <div class="auth-buttons">
+      <button class="login-btn" onclick="window.location.href='login.html'">Login</button>
+      <button class="signup-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+    </div>
+  </header>
+
+  <!-- Recommendation Section -->
+  <section class="recommend-section">
+    <h1>✨ AI-Powered Recommendations</h1>
+    <p>Based on your preferences and browsing history, we've curated these perfect matches for you</p>
+
+    <div class="preferences-box">
+      <div>
+        <h4>⚙️ Your Preferences</h4>
+        <div class="preference-tags">
+          <span>Budget: $500k – $1.5M</span>
+          <span>3-4 Bedrooms</span>
+          <span>Suburban Areas</span>
+          <span>Near Schools</span>
+        </div>
+      </div>
+      <button>Update Preferences</button>
+    </div>
+
+    <h2 style="margin-bottom:30px;">Perfect Matches for You</h2>
+
+    <div class="property-grid">
+      <!-- Property 1 -->
+      <div class="property-card">
+        <div style="position: relative;">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Modern Family House">
+          <div class="match-badge">95% Match</div>
+        </div>
+        <div class="property-info">
+          <h3>Modern Family House</h3>
+          <p>📍 Beverly Hills, CA</p>
+          <div class="highlight">🤖 Matches your budget and location preference</div>
+          <div class="property-details">
+            <span>🛏 4</span>
+            <span>🛁 3</span>
+            <span>📏 3,200 sqft</span>
+          </div>
+          <div class="price">$1,250,000</div>
+          <a href="#" class="view-btn">View Details</a>
+        </div>
+      </div>
+
+      <!-- Property 2 -->
+      <div class="property-card">
+        <div style="position: relative;">
+          <img src="https://images.unsplash.com/photo-1600585154154-8e8d1c9a55e9?auto=format&fit=crop&w=800&q=80" alt="Garden Estate">
+          <div class="match-badge">92% Match</div>
+        </div>
+        <div class="property-info">
+          <h3>Garden Estate</h3>
+          <p>📍 Portland, OR</p>
+          <div class="highlight">🤖 Similar to properties you viewed</div>
+          <div class="property-details">
+            <span>🛏 4</span>
+            <span>🛁 3</span>
+            <span>📏 3,500 sqft</span>
+          </div>
+          <div class="price">$1,150,000</div>
+          <a href="#" class="view-btn">View Details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-section">
+      <div class="logo" style="color:white;">
+        <img src="https://cdn-icons-png.flaticon.com/512/869/869636.png" alt="logo">
+        SmartNest
+      </div>
+      <p>Your trusted partner in finding the perfect home. We make real estate smart and simple.</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="search.html">Property Search</a>
+      <a href="recommendations.html">Recommendations</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="footer-section">
+      <h4>Services</h4>
+      <a href="#">Buy Property</a>
+      <a href="#">Rent Property</a>
+      <a href="#">Property Valuation</a>
+      <a href="#">AI Assistant</a>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact Info</h4>
+      <p>📍 580 Essex Street, Sydney</p>
+      <p>📞 1234567890</p>
+      <p>✉ info@smartnest.com</p>
+    </div>
+
+    <div class="footer-bottom">
+      © 2025 SmartNest. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
