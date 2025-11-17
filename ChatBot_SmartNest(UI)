@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartNest | AI Assistant</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Chatbot Widget */
+    .chat-widget {
+      width: 360px;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e5e7eb;
+    }
+
+    /* Header */
+    .chat-header {
+      background-color: #2563eb;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header h3 {
+      margin: 0;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chat-header span {
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .chat-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* Messages Area */
+    .chat-body {
+      flex-grow: 1;
+      padding: 15px;
+      background-color: #f9fafb;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .bot {
+      background-color: #f3f4f6;
+      color: #111827;
+      padding: 10px 14px;
+      border-radius: 10px;
+      max-width: 75%;
+    }
+
+    .time {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 4px;
+    }
+
+    /* Quick Replies */
+    .quick-replies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px 15px;
+    }
+
+    .quick-replies button {
+      background-color: #e0e7ff;
+      color: #2563eb;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .quick-replies button:hover {
+      background-color: #c7d2fe;
+    }
+
+    /* Input */
+    .chat-input {
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #e5e7eb;
+      padding: 10px;
+      background-color: #fff;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f3f4f6;
+      outline: none;
+    }
+
+    .chat-input button {
+      background-color: #0f172a;
+      border: none;
+      color: white;
+      margin-left: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="chat-widget">
+    <!-- Header -->
+    <div class="chat-header">
+      <h3>🤖 AI Assistant</h3>
+      <button title="Close">✕</button>
+    </div>
+
+    <!-- Chat Body -->
+    <div class="chat-body" id="chatBody">
+      <div class="message bot">
+        Hi! I'm SmartNest AI Assistant.<br>
+        How can I help you with your real estate needs today?
+        <div class="time">10:21 am</div>
+      </div>
+    </div>
+
+    <!-- Quick Replies -->
+    <div class="quick-replies">
+      <button>Find a home</button>
+      <button>Property prices</button>
+      <button>Schedule viewing</button>
+      <button>Talk to agent</button>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input">
+      <input type="text" placeholder="Type your message..." id="userInput" />
+      <button id="sendBtn">➤</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBody = document.getElementById('chatBody');
+    const sendBtn = document.getElementById('sendBtn');
+    const userInput = document.getElementById('userInput');
+
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    function sendMessage() {
+      const message = userInput.value.trim();
+      if (message === '') return;
+
+      // Append user message
+      const userMsg = document.createElement('div');
+      userMsg.classList.add('message');
+      userMsg.innerHTML = `<div class="bot" style="background:#2563eb; color:white;">${message}</div>`;
+      chatBody.appendChild(userMsg);
+      userInput.value = '';
+
+      // Scroll
+      chatBody.scrollTop = chatBody.scrollHeight;
+
+      // Simulate AI reply
+      setTimeout(() => {
+        const botReply = document.createElement('div');
+        botReply.classList.add('message');
+        botReply.innerHTML = `
+          <div class="bot">Thanks for your message! I’ll forward this to our SmartNest property team.</div>
+        `;
+        chatBody.appendChild(botReply);
+        chatBody.scrollTop = chatBody.scrollHeight;
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
